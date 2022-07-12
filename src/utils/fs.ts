@@ -74,6 +74,10 @@ export function createDirectory(directory: string): boolean {
     }
 }
 
+/**
+ * @param  {number} ms
+ * @returns Promise
+ */
 export function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
