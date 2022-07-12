@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "target": "esnext",
+    "lib": ["es6", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "resolveJsonModule": true,
     "sourceMap": true,
     "declaration": true,
-
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
@@ -27,7 +27,6 @@
     "composite": true,
     "skipLibCheck": true,
     "noEmitHelpers": false,
-
     "outDir": "dist",
     "rootDir": "src",
     "baseUrl": "."

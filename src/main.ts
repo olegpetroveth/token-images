@@ -1,38 +1,23 @@
 #!/usr/bin/env node
 
-/**
- * This is a sample HTTP server.
- * Replace this with your implementation.
- */
-
 import 'dotenv/config'
-import { createServer, IncomingMessage, ServerResponse } from 'http'
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
+import express from 'express';
 import { Config } from './config.js'
 
-const nodePath = resolve(process.argv[1])
-const modulePath = resolve(fileURLToPath(import.meta.url))
-const isCLI = nodePath === modulePath
+import OneInch from './providers/oneInch';
 
-export default function main(port: number = Config.port) {
-  const requestListener = (request: IncomingMessage, response: ServerResponse) => {
-    response.setHeader('content-type', 'text/plain;charset=utf8')
-    response.writeHead(200, 'OK')
-    response.end('Olá, Hola, Hello!')
-  }
+const app = express();
+const port = process.env.PORT || Config.port
 
-  const server = createServer(requestListener)
+app.get('/', (req, res) => {
+  res.status(200).send('Hello World!');
+});
 
-  if (isCLI) {
-    server.listen(port)
-    // eslint-disable-next-line no-console
-    console.log(`Listening on port: ${port}`)
-  }
+app.get('/1inch', async (req, res) => {
+  const response = await OneInch.fetchImages(true);
+  res.status(200).json(response);
+});
 
-  return server
-}
-
-if (isCLI) {
-  main()
-}
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
