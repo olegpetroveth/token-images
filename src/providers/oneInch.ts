@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 export default class OneInch {
     static url: string = 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link';
-    static directory: string = `${__dirname}/../../assets/oneInch`;
+    static directory: string = `${__dirname}/../../assets/1inch`;
     static chain: string = 'eth';
     
     /**
