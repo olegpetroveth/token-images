@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
-import 'dotenv/config'
+import 'dotenv/config';
 import express from 'express';
-import { Config } from './config.js'
+import { Config } from './config.js';
 
 import OneInch from './providers/oneInch';
 import CoinGecko from './providers/coinGecko';
+import TraderJoe from './providers/traderjoe';
 
 const app = express();
-const port = process.env.PORT || Config.port
+const port = process.env.PORT || Config.port;
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello World!');
@@ -24,6 +25,10 @@ app.get('/coinGecko', async (req, res) => {
   res.status(200).json(response);
 });
 
+app.get('/traderjoe', async (req, res) => {
+  const response = await TraderJoe.fetchImages(true);
+  res.status(200).json(response);
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
