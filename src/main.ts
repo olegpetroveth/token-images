@@ -7,6 +7,7 @@ import { Config } from './config.js';
 import OneInch from './providers/oneInch';
 import CoinGecko from './providers/coinGecko';
 import TraderJoe from './providers/traderjoe';
+import Pangolin from './providers/pangolin.js';
 
 const app = express();
 const port = process.env.PORT || Config.port;
@@ -27,6 +28,10 @@ app.get('/coinGecko', async (req, res) => {
 
 app.get('/traderjoe', async (req, res) => {
   const response = await TraderJoe.fetchImages(true);
+  res.status(200).json(response);
+});
+app.get('/pangolin', async (req, res) => {
+  const response = await Pangolin.fetchImages(true);
   res.status(200).json(response);
 });
 
